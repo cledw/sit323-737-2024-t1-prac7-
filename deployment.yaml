@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mathnodeapp
+  template:
+    metadata:
+      labels:
+        app: mathnodeapp
+    spec:
+       containers:
+       - name: mathnodeapp
+         image: mathnodeapp:latest
+         imagePullPolicy: Never 
+         ports:
+         - containerPort: 3000
+         env:
+           - name: NODE_ENV
+             value: "production"
